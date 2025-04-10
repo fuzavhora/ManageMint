@@ -7,6 +7,11 @@ const TempUser = require("../models/tempUser");
 exports.registerUser = async (req, res) => {
   const { name, email, number, password, gender, age } = req.body;
 
+  if (!name || !email || !number || !password || !gender || !age) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
+  
+
   try {
   
     const existingUser = await User.findOne({ 
@@ -51,13 +56,13 @@ exports.registerUser = async (req, res) => {
 //Verify OTP and register the user
 
 exports.verifyOtp = async (req, res) => {
-  const { otp } = req.body;
+  const { email, otp } = req.body;
 
   try {
-    const tempUser = await TempUser.findOne({ otp });
+    const tempUser = await TempUser.findOne({ email, otp });
 
     if (!tempUser) {
-      return res.status(400).json({ message: "Invalid OTP" });
+      return res.status(400).json({ message: "Invalid OTP or email" });
     }
 
     if (Date.now() > tempUser.otpExpires) {
@@ -65,7 +70,7 @@ exports.verifyOtp = async (req, res) => {
       return res.status(400).json({ message: "OTP expired" });
     }
 
-    // Move tempUser to main User collection
+    // Create permanent user
     const newUser = new User({
       name: tempUser.name,
       email: tempUser.email,
@@ -73,7 +78,6 @@ exports.verifyOtp = async (req, res) => {
       password: tempUser.password,
       gender: tempUser.gender,
       age: tempUser.age,
-  
     });
 
     await newUser.save();

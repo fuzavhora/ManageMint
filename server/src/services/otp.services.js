@@ -1,22 +1,22 @@
 const crypto = require('crypto');
-const twilio = require('twilio');
+// const twilio = require('twilio');
 const sendMail = require('../utils/sendMail');
 require('dotenv').config();
 
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-console.log(accountSid);
+// const accountSid = process.env.TWILIO_ACCOUNT_SID;
+// console.log(accountSid);
 
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-console.log(authToken);
+// const authToken = process.env.TWILIO_AUTH_TOKEN;
+// console.log(authToken);
 
-const twilioPhoneNumber = process.env.TWILIO_PHONE_NUMBER;
-console.log(twilioPhoneNumber);
-if (!accountSid || !authToken || !twilioPhoneNumber) {
-  throw new Error('Twilio credentials are not set in environment variables');
-}
+// const twilioPhoneNumber = process.env.TWILIO_PHONE_NUMBER;
+// console.log(twilioPhoneNumber);
+// if (!accountSid || !authToken || !twilioPhoneNumber) {
+//   throw new Error('Twilio credentials are not set in environment variables');
+// }
 
 
-const client = twilio(accountSid, authToken);
+// const client = twilio(accountSid, authToken);
 
 exports.sendOtp = async (userDoc) => {
   try {
@@ -29,11 +29,11 @@ exports.sendOtp = async (userDoc) => {
     await userDoc.save(); // this only works if userDoc is from `new TempUser(...)`
 
     // Send SMS
-    await client.messages.create({
-      body: `Your OTP is ${otp}`,
-      from: process.env.TWILIO_PHONE_NUMBER,
-      to: `+91${userDoc.number}`,
-    });
+    // await client.messages.create({
+    //   body: `Your OTP is ${otp}`,
+    //   from: process.env.TWILIO_PHONE_NUMBER,
+    //   to: `+91${userDoc.number}`,
+    // });
 
     // Send Email
     await sendMail(userDoc.email, 'ManageMint OTP', `Your OTP is: ${otp}`);
