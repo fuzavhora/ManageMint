@@ -1,129 +1,167 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
 const RegisterStep = ({
   register,
   errors,
-
   onSendOtp,
   handleSubmit,
-  loading
+  loading,
 }) => {
-  // const onSubmit = async (data) => {
-  //   console.log("Validated Data:", data);
-  //   setFormData({ ...formData, ...data }); // Sync formData if needed
-  //   onSendOtp();
-  // };
-
-  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?#&_])[A-Za-z\d@$!%*?#&_]{8,}$/;
-  const passwordErrorMessage = "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character.";
+  const passwordPattern =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?#&_])[A-Za-z\d@$!%*?#&_]{8,}$/;
+  const passwordErrorMessage =
+    "Password must be at least 8 characters long, include uppercase, lowercase, number, and special character.";
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const emailErrorMessage = "Enter a valid email address.";
 
   return (
-    <div className="bg-white p-6 rounded shadow w-full max-w-md space-y-4">
-      <h2 className="text-xl font-bold text-center text-gray-800">Register</h2>
+    <div className="h-screen w-full flex items-center justify-center bg-gradient-to-r from-blue-500 to-indigo-600">
+      {/* Side Quote Section */}
+      <div className="hidden lg:block lg:w-1/3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white p-10 rounded-l-2xl">
+        <blockquote className="text-2xl italic font-semibold">
+          "Transform your business with ManageMint - the future of business management."
+        </blockquote>
+      </div>
 
-      <form onSubmit={handleSubmit(onSendOtp)} className="space-y-4">
-        {/* Full Name */}
-        <input
-          type="text"
-          placeholder="Full Name"
-          className="w-full p-2 border rounded"
-          {...register("name", {
-            required: "Full Name is required",
-            minLength:{
-              value: 5,
-              message: "Full Name must be at least 5 characters",
-            }
-          })}
-        />
-        {errors.name && <span className="text-red-500">{errors.name.message}</span>}
+      {/* Form Section */}
+      <div className="bg-white rounded-2xl shadow-xl px-8 py-10 w-full max-w-md mx-auto space-y-6 border border-gray-200">
+        <h2 className="text-3xl font-extrabold text-center text-gray-900">
+          Create Account
+        </h2>
+        <p className="text-sm text-gray-600 text-center">
+          Get started with ManageMint 🚀
+        </p>
 
-        {/* Email */}
-        <input
-          type="email"
-          placeholder="Email"
-          className="w-full p-2 border rounded"
-          {...register("email", {
-            required: "Email is required",
-            pattern :{
-              value : emailPattern,
-              message : emailErrorMessage,
-            }
-          })}
-        />
-        {errors.email && <span className="text-red-500">{errors.email.message}</span>}
+        {errors?.emailOrMobile && (
+          <p className="text-center text-sm text-red-500 font-medium">
+            {errors.emailOrMobile.message}
+          </p>
+        )}
 
-        {/* Password */}
-        <input
-          type="password"
-          placeholder="Password"
-          className="w-full p-2 border rounded"
-          {...register("password", {
-            required: "Password is required",
-            minLength: {
-              value: 6,
-              message: "Password must be at least 6 characters",
-            },
-            pattern:{
-              value: passwordPattern,
-              message: passwordErrorMessage,
-            }
-          })}
-        />
-        {errors.password && <span className="text-red-500">{errors.password.message}</span>}
+        <form onSubmit={handleSubmit(onSendOtp)} className="space-y-5">
+          {/* Full Name */}
+          <div>
+            <input
+              type="text"
+              placeholder="Full Name"
+              className="input-style"
+              {...register("name", {
+                required: "Full Name is required",
+                minLength: {
+                  value: 5,
+                  message: "Full Name must be at least 5 characters",
+                },
+              })}
+            />
+            {errors.name && <p className="error-text">{errors.name.message}</p>}
+          </div>
 
-        {/* Mobile Number */}
-        <input
-          type="text"
-          placeholder="Mobile Number"
-          className="w-full p-2 border rounded"
-          {...register("number", {
-            required: "Mobile number is required",
-            pattern: {
-              value: /^[0-9]{10}$/,
-              message: "Enter a valid 10-digit number",
-            },
-          })}
-        />
-        {errors.number && <span className="text-red-500">{errors.number.message}</span>}
+          {/* Email */}
+          <div>
+            <input
+              type="email"
+              placeholder="Email Address"
+              className="input-style"
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: emailPattern,
+                  message: emailErrorMessage,
+                },
+              })}
+            />
+            {errors.email && <p className="error-text">{errors.email.message}</p>}
+          </div>
 
-        {/* Gender */}
-        <select
-          className="w-full p-2 border rounded"
-          defaultValue=""
-          {...register("gender", {
-            required: "Gender is required",
-          })}
-        >
-          <option value="">Select Gender</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
-        </select>
-        {errors.gender && <span className="text-red-500">{errors.gender.message}</span>}
+          {/* Password */}
+          <div>
+            <input
+              type="password"
+              placeholder="Password"
+              className="input-style"
+              {...register("password", {
+                required: "Password is required",
+                pattern: {
+                  value: passwordPattern,
+                  message: passwordErrorMessage,
+                },
+              })}
+            />
+            {errors.password && <p className="error-text">{errors.password.message}</p>}
+          </div>
 
-        {/* Age */}
-        <input
-          type="number"
-          placeholder="Age"
-          className="w-full p-2 border rounded"
-          {...register("age", {
-            required: "Age is required",
-            min: { value: 13, message: "You must be at least 13" },
-          })}
-        />
-        {errors.age && <span className="text-red-500">{errors.age.message}</span>}
+          {/* Mobile Number */}
+          <div>
+            <input
+              type="text"
+              placeholder="Mobile Number"
+              className="input-style"
+              {...register("number", {
+                required: "Mobile number is required",
+                pattern: {
+                  value: /^[0-9]{10}$/,
+                  message: "Enter a valid 10-digit number",
+                },
+              })}
+            />
+            {errors.number && <p className="error-text">{errors.number.message}</p>}
+          </div>
 
-        {/* Submit */}
-        <button
-          type="submit"
-          disabled={loading}
-          className={`w-full text-white py-2 rounded transition ${
-            loading ? "bg-slate-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
-          }`}
-        >
-          Send OTP
-        </button>
-      </form>
+          {/* Gender */}
+          <div>
+            <select
+              className="input-style"
+              defaultValue=""
+              {...register("gender", {
+                required: "Gender is required",
+              })}
+            >
+              <option value="" disabled>
+                Select Gender
+              </option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+            {errors.gender && <p className="error-text">{errors.gender.message}</p>}
+          </div>
+
+          {/* Age */}
+          <div>
+            <input
+              type="number"
+              placeholder="Age"
+              className="input-style"
+              {...register("age", {
+                required: "Age is required",
+                min: { value: 13, message: "You must be at least 13" },
+              })}
+            />
+            {errors.age && <p className="error-text">{errors.age.message}</p>}
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            disabled={loading}
+            className={`w-full py-3 rounded-lg font-semibold text-white transition-all ${
+              loading
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-blue-700 hover:bg-blue-800 shadow-lg transform hover:scale-105"
+            }`}
+          >
+            {loading ? "Sending OTP..." : "Send OTP"}
+          </button>
+        </form>
+
+        <p className="text-center">
+          If you already have an account{" "}
+          <Link to="/login" className="text-blue-500 hover:underline">
+            Login here
+          </Link>
+        </p>
+      </div>
     </div>
   );
 };

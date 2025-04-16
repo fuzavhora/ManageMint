@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
   const fetchUser = async (url, data) => {
     setLoading(true);
     try {
-      const response = await instance.post(`${url}`, data);
+      const response = await instance.post(url, data);
       setUser(response.data.user);
       setError(null);
       return response; // Return the response for further use

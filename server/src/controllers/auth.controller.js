@@ -6,21 +6,29 @@ const { sendOtp } = require("../services/otp.services");
 
 exports.loginUser = async (req, res) => {
     const { emailOrNumber, password } = req.body;
+    console.log("Email :" , emailOrNumber)
+    console.log("password :" , password)
+
+    if(!emailOrNumber || !password ){
+      return res.status(401).json({message : "Please enter all field"})
+    }
 
     try {
         const user = await User.findOne(
             { $or: [{ email: emailOrNumber }, { number: emailOrNumber }] }
         );
-        if (!user) return res.status(401).json({ message: "Invalid email or password" });
+        if (!user) return res.status(401).json({ message: "User not found" });
 
         // if(!user.isVerified) return res.status(401).json({ message: "Ohh! User is not Approved by Admin, Please wait" });
 
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.status(401).json({ message: "Invalid email or password" });
 
-        if (!user.isVerified) return res.status(401).json({ message: "User not verified or may be blocked" });
+        // if (!user.isVerified) return res.status(401).json({ message: "User not verified or may be blocked" });
 
-        const token = generateToken(user._id, user.role || "user");
+        const token = generateToken(user._id, user.role || "user",  {
+          expiresIn: "1m", // or "10m", "7d"
+        });
 
         res.cookie("token", token, {
             httpOnly: true,
@@ -42,6 +50,26 @@ exports.loginUser = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: "Server error", error: error.message });
     }
+}
+
+exports.getUser = async(req,res)=>{
+  try {
+    const userId = req.user.id; // Only allow for authenticated users
+    
+    const user = await User.findById(userId)
+
+    if(user){
+      console.log("user :", user);
+      return res.status(200).json({message : "user found scucces"})
+    } else {
+      return res.status(401).json({message : "user not found scucces"})
+    }
+    
+  } catch (error) {
+    console.log("server error",error);
+    res.status(401).json({message : "Server error from getuser"})
+    
+  }
 }
 
 exports.requestPasswordReset = async (req, res) => {

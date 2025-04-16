@@ -19,43 +19,47 @@ exports.verifyToken = (req, res, next) => {
 exports.isAdmin = (req, res, next) => {
   const authHeader = req.headers.authorization;
   // const token = authHeader && authHeader.startsWith('Bearer ')
-  const token = authHeader || req.cookies?.token
+  const token = authHeader || req.cookies?.token;
 
   if (!token) {
-    return res.status(401).json({ message: 'No token, authorization denied' });
+    return res.status(401).json({ message: "No token, authorization denied" });
   }
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded;
 
-    if (decoded.role !== 'admin') {
-      return res.status(403).json({ message: 'Access denied: Admins only' });
+    if (decoded.role !== "admin") {
+      return res.status(403).json({ message: "Access denied: Admins only" });
     }
 
     next();
   } catch (err) {
-    return res.status(401).json({ message: 'Invalid or expired token' });
+    return res.status(401).json({ message: "Invalid or expired token" });
   }
 };
 
 exports.isUser = (req, res, next) => {
   const token = req.cookies.token || req.headers.authorization;
+ 
+
   if (!token) {
-    return res.status(401).json({ message: 'No token, authorization denied' });
+    return res.status(401).json({ message: "No token, authorization denied" });
   }
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    if (decoded.role !== 'user') {
-      return res.status(403).json({ message: 'Access denied: Users only' });
+    if (decoded.role !== "user") {
+      return res.status(403).json({ message: "Access denied: Users only" });
     }
-    
+
     req.user = decoded;
+
     next();
   } catch (error) {
-    res.status(403).json({ message: 'Invalid or expired token' });
+    if (error.name === "TokenExpiredError") {
+      return res.status(401).json({ message: "Token expired" });
+    }
+    return res.status(401).json({ message: "Invalid token" });
   }
-
 };
-

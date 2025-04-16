@@ -10,18 +10,21 @@ import {
 // Import your components/pages
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
-import ForgotPassword from "./pages/Auth/ForgotPassword";
+import {ForgotPassword} from "./pages/Auth/ForgotPassword";
 import ResetPassword from "./pages/Auth/ResetPassword";
 import Dashboard from "./pages/Auth/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import RegistrationSuccess from "./pages/Auth/RegistrationSuccess";
 import AdminLogin from "./pages/Admin/AdminLogin";
 import { AdminDashboard } from "./pages/Admin/AdminDashboard";
+import { Home } from "./pages/Home";
 
 function App() {
   return (
       <Router>
+        {/* <Practis /> */}
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -35,6 +38,7 @@ function App() {
 
           <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
          
         </Routes>
       </Router>
