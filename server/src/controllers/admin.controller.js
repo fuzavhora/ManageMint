@@ -9,6 +9,8 @@ const RejectedUser = require('../models/rejectedUser.model');
 
 exports.loginAdmin = async (req, res) => {
     const { email, password } = req.body;
+    console.log("data :", req.body);
+    
 
     try {
         const admin = await Admin.findOne({ email });
@@ -48,10 +50,10 @@ exports.getPendingUsers = async (req, res) => {
 }
 
 exports.verifyUser = async (req, res) => {
-    const { userId } = req.params;
+    const { id } = req.params;
 
     try {
-        const user = await User.findById(userId);
+        const user = await User.findById(id);
 
         if (!user) return res.status(404).json({ message: 'User not found' });
 

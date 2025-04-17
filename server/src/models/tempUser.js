@@ -1,4 +1,4 @@
-  const mongoose = require('mongoose');
+const mongoose = require('mongoose');
   const bcrypt = require('bcrypt');
 
   const tempUserSchema = new mongoose.Schema({
@@ -9,10 +9,18 @@
   email : {
     type : String,
     required : true,
+    unique: true,
+    validate: {
+      validator: function(v) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+      },
+      message: props => `${props.value} is not a valid email!`
+    }
   },
   password : {
     type : String,
     required : true,
+    minlength: 8
   },
   number : {
     type : String,

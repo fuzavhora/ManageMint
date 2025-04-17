@@ -121,7 +121,7 @@ exports.getUserAccounts = async (req, res) => {
   }
 };
 
-exports.addBankAccounts = async (req, res) => {
+exports.addBankAccount = async (req, res) => {
   const { bankName } = req.body;
 
   if (!bankName) {
@@ -266,6 +266,48 @@ exports.addTransaction = async (req, res) => {
 
   } catch (error) {
     console.error('Error adding transaction:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
+
+exports.getRecentTransactions = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const transactions = await Transaction.find({ user: userId })
+      .sort({ date: -1 })
+      .limit(10);
+    
+    res.status(200).json(transactions);
+  } catch (error) {
+    console.error('Error fetching recent transactions:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
+
+exports.getMonthlyStats = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const currentDate = new Date();
+    const startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+    const endOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+
+    const transactions = await Transaction.find({
+      user: userId,
+      date: { $gte: startOfMonth, $lte: endOfMonth }
+    });
+
+    const stats = {
+      income: transactions
+        .filter(t => t.transactionType === 'income')
+        .reduce((sum, t) => sum + t.amount, 0),
+      expense: transactions
+        .filter(t => t.transactionType === 'expense')
+        .reduce((sum, t) => sum + t.amount, 0)
+    };
+
+    res.status(200).json(stats);
+  } catch (error) {
+    console.error('Error fetching monthly stats:', error);
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 };

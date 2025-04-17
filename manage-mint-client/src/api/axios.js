@@ -1,17 +1,14 @@
 // src/api/axios.js
 import axios from "axios";
 
+// Update baseURL to match your environment configuration
 const instance = axios.create({
-  baseURL: "http://localhost:5500/api/", // your backend base URL
-  withCredentials: true, // send cookies
+  baseURL: "http://localhost:5500/api/"
 });
 
-instance.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
-  if (token !== null) {
-    config.headers.Authorization = `${token}`;
-  }
-  return config;
-});
+// Request interceptor
+
+// Response interceptor
+
 
 export default instance;

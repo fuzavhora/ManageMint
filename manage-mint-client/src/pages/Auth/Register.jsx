@@ -8,101 +8,68 @@ import { NewOtp } from "../../components/common/NewOtp";
 
 const Register = () => {
   const [step, setStep] = useState("register"); // "register" or "otp"
+  const [error, setError] = useState(null);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     getValues,
-    setError
+    setError: setFormError
   } = useForm();
 
   const [otp, setOtp] = useState("");
 
   const navigate = useNavigate();
   const { loading, setLoading, setUser, fetchUser } = useAuth();
+
   const handleSendOtp = async (formData) => {
     try {
       setLoading(true);
+      setError(null);
       const res = await fetchUser("user/register", formData);
-      if (res.data.status === "failed") {
-        console.log("failed message :",res.data.message);
-        setError("emailOrMobile", {
-          type: "manual",
-          message: res.data.message,
-        });
-        
-        // navigate('/login')
-        return 
-      }
-      else if (res?.status === 200) {
-        setStep("otp");
-        setUser(res.data.tempUser); // Store temp user if backend returns it
-      }
-
-      console.log("resposnse : ", res);
       
-  
-      setLoading(false);
+      if (res?.data?.status === "failed") {
+        setError(res.data.message);
+        return;
+      }
+      
+      if (res?.status === 200) {
+        setStep("otp");
+        setUser(res.data.tempUser);
+      }
     } catch (err) {
       setLoading(false);
-      console.error("Register error (full):", err);
-  
-      // Extract error message safely
+      console.error("Register error:", err);
+      
       const status = err?.response?.status;
       const message = err?.response?.data?.message;
-  
-      // Show specific validation message
-      if (status === 409 && message === "User already exists") {
-        setError("emailOrMobile", {
-          type: "manual",
-          message: "User already registered. Please login.",
-        });
+      
+      if (status === 409 || message === "User already exists") {
+        setError("User already registered. Please login.");
       } else if (status === 400 && message) {
-        setError("emailOrMobile", {
-          type: "manual",
-          message: message,
-        });
+        setError(message);
       } else {
-        setError("emailOrMobile", {
-          type: "manual",
-          message: "Something went wrong. Please try again.",
-        });
+        setError("Something went wrong. Please try again.");
       }
+    } finally {
+      setLoading(false);
     }
   };
-  
-  
 
   const handleVerifyOtp = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      const res = await fetchUser("user/verify-otp", {
-        otp
-      });
-      console.log("OTP DATA : ", res.status);
-      if(res?.status === 400){
-        if(res?.data.message === "Invalid OTP or email"){
-          setError("Invalid Otp ot email")
-        }
-      }
+      setError(null);
+      const res = await fetchUser("user/verify-otp", { otp });
+      
       if (res?.status === 201) {
-        navigate("/register-success"); // Redirect to success page
-      }
-      if(res?.status === 400){
-        console.log("status : ", res?.data.message);
-        
+        navigate("/register-success");
+      } else if (res?.status === 400) {
+        setError(res?.data?.message || "Invalid OTP");
       }
     } catch (err) {
-      const status = err?.response?.status;
-      const message = err?.response?.data?.message;
-      console.log("I am in error");
-      
-
-      console.log("Error status : ",status);
-      console.log("Error message : ",message);
-      
-
+      setError(err?.response?.data?.message || "Something went wrong. Please try again.");
     }
   };
 
@@ -113,13 +80,16 @@ const Register = () => {
           loading={loading}
           register={register}
           handleSubmit={handleSubmit}
-          errors={errors}
+          errors={{ ...errors, emailOrMobile: error ? { message: error } : null }}
           onSendOtp={handleSendOtp}
         />
       ) : (
-        // <OtpStep otp={otp} setOtp={setOtp} onVerifyOtp={handleVerifyOtp} />
-
-        <NewOtp otp={otp} setOtp={setOtp} onVerifyOtp={handleVerifyOtp} />
+        <NewOtp 
+          otp={otp} 
+          setOtp={setOtp} 
+          onVerifyOtp={handleVerifyOtp}
+          error={error}
+        />
       )}
     </div>
   );

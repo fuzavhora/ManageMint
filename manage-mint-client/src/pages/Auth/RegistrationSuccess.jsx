@@ -34,4 +34,4 @@ const RegistrationSuccess = ({ headMessage = "Registration Successful!" }) => {
   );
 };
 
-export default RegistrationSuccess;
+export default RegistrationSuccess

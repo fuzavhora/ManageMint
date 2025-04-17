@@ -32,7 +32,7 @@ const Login = () => {
     if (token) {
       const findUser = async () => {
         try {
-          const userLogged = await instance.get("auth/profile");
+          const userLogged = await instance.get("api/auth/profile");
           if (userLogged.status === 200) {
             navigate("/dashboard");
           }
@@ -53,7 +53,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetchUser("auth/login", { ...formData });
+      const response = await fetchUser("/auth/login", { ...formData });
 
       if (response.status === 200) {
         setUser(response.data);

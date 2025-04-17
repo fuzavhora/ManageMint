@@ -1,0 +1,1 @@
+{"level":"error","message":"Error: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017","service":"manage-mint-api","timestamp":"2025-04-17 16:10:26"}
