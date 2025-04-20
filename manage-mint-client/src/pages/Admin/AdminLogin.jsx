@@ -17,42 +17,27 @@ const AdminLogin = () => {
     });
   };
 
-  // const handleSubmit = async () => {
-  //   // e.preventDefault();
-  //   console.log("zvcnshfvnshfdh");
-    
-    
-  //   try {
-  //     const res = await fetchUser("admin/login", {
-  //       email: formData.email,  // Make sure to send email, not emailOrNumber
-  //       password: formData.password
-  //     });
-
-  //     if (res?.status === 200) {
-  //       setUser({
-  //         ...res.data,
-  //         role: 'admin'  // Make sure role is set
-  //       });
-  //       localStorage.setItem('token', res.data.token);
-  //       navigate("/admin");
-  //     } else {
-  //       setError(res?.data?.message || "bhai log hsdvfjhegfjgfsdhkjas dfhvsdn v vsdhgfcndfhnf");
-  //     }
-  //   } catch (err) {
-  //     console.error('Admin login error:', err);
-  //     setError(err?.response?.data?.message || "Something went wrong");
-  //   }
-  // };
-
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    console.log("Data is coming");
+    e.preventDefault();
     
-    const res = await fetchUser("admin/login",formData)
-    console.log("res",res);
-  
-    console.log(formData)
-  }
+    try {
+      const res = await fetchUser("admin/login", formData);
+      
+      if (res?.status === 200) {
+        setUser({
+          ...res.data,
+          role: 'admin'
+        });
+        localStorage.setItem('token', res.data.token);
+        navigate("/admin");
+      } else {
+        setError(res?.data?.message || "Login failed");
+      }
+    } catch (err) {
+      console.error('Admin login error:', err);
+      setError(err?.response?.data?.message || "Invalid credentials");
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
