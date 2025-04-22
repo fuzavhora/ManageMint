@@ -9,13 +9,13 @@ const RejectedUser = require('../models/rejectedUser.model');
 
 exports.loginAdmin = async (req, res) => {
     const { email, password } = req.body;
-    console.log("data :", req.body);
+    // console.log("data :", req.body);
     
 
     try {
         const admin = await Admin.findOne({ email });
 
-        console.log("Admin : ", admin);
+        // console.log("Admin : ", admin);
         
         if(!admin) return res.status(401).json({ message: 'Invalid email or password' });
 
@@ -123,4 +123,14 @@ exports.logoutAdmin = (req, res) => {
       res.status(500).json({ message: "Logout failed" });
     }
 };
+
+exports.getAdmin = async (req, res) => {
+
+    const {userId} = req.user
+
+    const admin = await Admin.findById(userId);
+    if (!admin) return res.status(404).json({ message: 'Admin not found' });
+    ;
+    res.status(200).json(admin);
+}
 

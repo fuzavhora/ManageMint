@@ -102,7 +102,7 @@ exports.verifyOtp = async (req, res) => {
 exports.getUserAccounts = async (req, res) => {
   try {  
     const userId = req.user.id;
-    console.log(userId);
+
     
     const userAccount = await UserAccount.findOne({ user: userId })
 
@@ -114,6 +114,7 @@ exports.getUserAccounts = async (req, res) => {
       message: "User account fetched successfully",
       userAccount
     });
+    
 
   } catch (error) {
     console.error("Error fetching user account:", error);
@@ -166,10 +167,21 @@ exports.addBankAccount = async (req, res) => {
 exports.addCreditCard = async (req, res) => {
   try {
     const userId = req.user.id;
-    const { bankName, cardNumber,cardType, expiryDate,cardHolderName, cvv,creditLimit } = req.body;
+  
+    const { bankName, cardNumber, cardType, expiryDate, cardHolderName, cvv, creditLimit , outstandingAmount} = req.body;
     if (!bankName || !cardNumber || !cardType || !expiryDate || !cardHolderName || !cvv || !creditLimit) {
       return res.status(400).json({ message: "All fields are required" });
     }
+
+    const existingCard = await CreditCard.findOne({ cardNumber });
+    if (existingCard) {
+      if (existingCard.user.toString() === userId) {
+        return res.status(409).json({ message: "You have already registered this credit card" });
+      } else {
+        return res.status(409).json({ message: "This credit card is already registered by another user" });
+      }
+    }
+   
     const creditCard = await CreditCard.create({
       user: userId,
       bankName,
@@ -178,8 +190,9 @@ exports.addCreditCard = async (req, res) => {
       expiryDate,
       cardHolderName,
       cvv,
-      creditLimit
-    })
+      creditLimit,
+      outstandingAmount :  outstandingAmount || 0
+    });
 
     // Update UserAccount
     const userAccount = await UserAccount.findOne({ user: userId });
@@ -195,7 +208,27 @@ exports.addCreditCard = async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 }
+exports.getallcards = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const cards = await CreditCard.find({ user: userId });
 
+    if (!cards || cards.length === 0) {
+      return res.status(200).json({ message: "No credit cards found", cards: [] });
+    }
+
+    return res.status(200).json({ 
+      message: "Credit cards fetched successfully",
+      cards 
+    });
+  } catch (error) {
+    console.error("Error fetching credit cards:", error);
+    return res.status(500).json({ 
+      message: "Failed to fetch credit cards", 
+      error: error.message 
+    });
+  }
+};
 
 const Transaction = require('../models/Transition.model');
 
@@ -274,9 +307,9 @@ exports.getRecentTransactions = async (req, res) => {
   try {
     const userId = req.user.id;
     const transactions = await Transaction.find({ user: userId })
-      .sort({ date: -1 })
-      .limit(10);
-    
+    if(!transactions){
+      return res.status(200).json({message:"No transactions found"})
+    }
     res.status(200).json(transactions);
   } catch (error) {
     console.error('Error fetching recent transactions:', error);

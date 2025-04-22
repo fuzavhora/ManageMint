@@ -1,14 +1,13 @@
-// src/api/axios.js
-import axios from "axios";
+import axios from 'axios';
 
-// Update baseURL to match your environment configuration
+const token = localStorage.getItem('token');
+
 const instance = axios.create({
-  baseURL: "http://localhost:5500/api/"
+  baseURL: 'http://localhost:5500/api',
+  'authorization': `${token}`,
 });
 
-// Request interceptor
-
-// Response interceptor
+// Add response interceptor for error handling
 
 
 export default instance;

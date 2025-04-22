@@ -9,12 +9,12 @@ import bgBusiness from "../../assets/images/bg-business.png"
 
 
 // Optional: replace this with a business-themed gradient background
-const backgroundStyle = {
-  backgroundImage:
-    "linear-gradient(to right, #1e3c72, #2a5298)", // professional gradient
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-};
+// const backgroundStyle = {
+//   backgroundImage:
+//     "linear-gradient(to right, #1e3c72, #2a5298)", // professional gradient
+//   backgroundSize: "cover",
+//   backgroundPosition: "center",
+// };
 
 const Login = () => {
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ const Login = () => {
     password: "",
   });
 
-  const { user, setUser, fetchUser } = useAuth();
+  const { setUser, fetchUser } = useAuth();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -53,7 +53,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetchUser("/auth/login", { ...formData });
+      const response = await fetchUser("auth/login", { ...formData });
 
       if (response.status === 200) {
         setUser(response.data);
@@ -65,7 +65,7 @@ const Login = () => {
         setTimeout(() => {
           localStorage.removeItem("token");
           toast.info("Session expired. Please login again.");
-        }, 10000);
+        },200000);
       }
     } catch (error) {
       const errorMessage = error.response?.data?.message || "Invalid Email or Password or User is not verified";

@@ -22,6 +22,10 @@ import { Home } from "./pages/Home";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import BankAccounts from './pages/Dashboard/BankAccounts';
 import BankAccountDetails from './pages/Dashboard/BankAccountDetails';
+import PendingUsers from "./pages/Admin/PendingUsers";
+import ApprovedUsers from "./pages/Admin/ApprovedUsers";
+import RejectedUsers from "./pages/Admin/RejectedUsers";
+import AdminProtectedRoute from "./components/AdminProtectedRoute";
 
 function App() {
   return (
@@ -38,12 +42,32 @@ function App() {
           <Route path="/dashboard" element={
             <ProtectedRoute>
               <Dashboard />
+              
             </ProtectedRoute>
           } />
           <Route path="/register-success" element={<RegistrationSuccess />} />
 
           <Route path="/admin-login" element={<AdminLogin />} />
-          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin" element={
+            <AdminProtectedRoute>
+              <AdminDashboard />
+            </AdminProtectedRoute>
+          } />
+          <Route path="/admin/pending-users" element={
+            <AdminProtectedRoute>
+              <PendingUsers />
+            </AdminProtectedRoute>
+          } />
+          <Route path="/admin/users" element={
+            <AdminProtectedRoute>
+              <ApprovedUsers />
+            </AdminProtectedRoute>
+          } />
+          <Route path="/admin/rejected-users" element={
+            <AdminProtectedRoute>
+              <RejectedUsers />
+            </AdminProtectedRoute>
+          } />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/dashboard/bank-accounts" element={
             <ProtectedRoute>

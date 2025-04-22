@@ -15,20 +15,8 @@ const limiter = rateLimit({
 // Apply rate limiting to all routes
 app.use(limiter);
 
-// CORS configuration - allow all origins
-app.use(cors({
-  origin: '*',
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  exposedHeaders: ['Content-Length', 'X-Kuma-Revision'],
-  maxAge: 600
-}));
-
-// app.use(cors({
-//   origin:['*','http://localhost:3000'],
-//   credentials:true
-// }))
+// CORS configuration
+app.use(cors());
 
 app.use(express.json());
 app.use(cookieParser());

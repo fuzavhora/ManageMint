@@ -13,7 +13,6 @@ const creditCardSchema = new mongoose.Schema({
     cardNumber: {
         type: String,
         required: true,
-        unique: true
     },
     cardType: {
         type: String,

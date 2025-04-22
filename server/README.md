@@ -1,95 +1,147 @@
-# ManageMint Server
+# ManageMint API Documentation
 
-ManageMint is a comprehensive financial management application that helps users track their expenses, manage bank accounts, and monitor credit cards.
+## Base URL
 
-## Features
+## Authentication Routes (`/api/auth`)
 
-- User Authentication with OTP verification
-- Bank Account Management
-- Credit Card Management
-- Transaction Tracking
-- Business Transaction Support
-- Mobile Device Management
+### Login User
 
-## Tech Stack
+- **URL:** `/auth/login`
+- **Method:** `POST`
+- **Body:**
 
-- Node.js
-- Express.js
-- MongoDB
-- JWT Authentication
-- OTP Verification
+````json
+{
+  "emailOrNumber": "string",
+  "password": "string"
+}
 
-## Prerequisites
+Response:
+```json
+{
+  "message": "Login successful",
+  "token": "string",
+  "user": {
+    "id": "string",
+    "name": "string",
+    "email": "string",
+    "number": "string",
+    "gender": "string",
+    "age": "number"
+  }
+}
 
-- Node.js (v14 or higher)
-- MongoDB
-- npm or yarn
+Get User Profile
+- **URL:** `/auth/profile`
+- **Method:** `GET`
+- **Headers:**
+  - `Authorization:  <token>`
+- **Response:**
+```json
+{
+  "id": "string",
+  "name": "string",
+  "email": "string",
+  "number": "string",
+  "gender": "string",
+  "age": "number",
+  "creditCards": [{
+    "bankName": "string",
+    "cardNumber": "string",
+    "cardType": "string",
+    "expiryDate": "string",
+    "creditLimit": "number",
+    "outstandingAmount": "number"
+  }],
+  "bankAccounts": [{
+    "bankName": "string",
+    "accountNumber": "string",
+    "balance": "number"
+  }]
+}
 
-## Installation
+Forgot Password
+- **URL:** `/auth/forgot-password`
+- **Method:** `POST`
+- **Headers:**
+  - `Authorization:  <token>`
+- **Body:**
+```json
+{
+  "email": "string"
+}
 
-1. Clone the repository
-```bash
-git clone <repository-url>
-cd server
-```
+Reset Password
+- **URL:** `/auth/reset-password`
+- **Method:** `POST`
+- **Headers:**
+  - `Authorization:  <token>`
+- **Body:**
+```json
+{
+  "password": "string"
+}
 
-2. Install dependencies
-```bash
-npm install
-```
+Verify Reset OTP
+- **URL:** `/auth/verify-reset-otp`
+- **Method:** `POST`
+- **Body:**
+```json
+{
+  "otp": "string",
+  "email": "string"
+}
 
-3. Create a `.env` file in the root directory with the following variables:
-```
-PORT=5000
-MONGODB_URI=your_mongodb_uri
-JWT_SECRET=your_jwt_secret
-OTP_SECRET=your_otp_secret
-```
+Logout User
+- **URL:** `/auth/logout`
+- **Method:** `POST`
+- **Headers:**
+  - `Authorization:  <token>`
 
-4. Start the server
-```bash
-npm start
-```
 
-## API Endpoints
+##User Routes (`/api/users`)
 
-### Authentication
-- `POST /api/auth/register` - Register a new user
-- `POST /api/auth/verify-otp` - Verify OTP
-- `POST /api/auth/login` - User login
+Register User
+- **URL:** `/users/register`
+- **Method:** `POST`
+- **Body:**
+```json
+{
+  "name": "string",
+  "email": "string",
+  "number": "string",
+  "password": "string",
+  "gender": "string",
+  "age": "number"
+}
 
-### User Accounts
-- `GET /api/user/accounts` - Get user accounts
-- `POST /api/user/bank-accounts` - Add bank account
-- `POST /api/user/credit-cards` - Add credit card
+Verify OTP
+- **URL:** `/users/verify-otp`
+- **Method:** `POST`
+- **Body:**
+```json
+{
+    "email": "string",
+  "otp": "string"
+}
 
-### Transactions
-- `POST /api/transactions` - Add new transaction
-- `GET /api/transactions` - Get transaction history
+Get User Accounts
+- **URL:** `/users/accounts`
+- **Method:** `GET`
+- **Headers:**
+  - `Authorization:  <token>`
+  
 
-## Project Structure
-
-```
-server/
-├── src/
-│   ├── controllers/     # Route controllers
-│   ├── models/          # Database models
-│   ├── routes/          # API routes
-│   ├── services/        # Business logic
-│   ├── middleware/      # Custom middleware
-│   └── utils/           # Utility functions
-├── config/              # Configuration files
-└── .env                 # Environment variables
-```
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License. 
+Add Bank Account
+- **URL:** `/users/accounts/bank`
+- **Method:** `POST`
+- **Headers:**
+  - `Authorization:  <token>`
+- **Body:**
+```json
+{
+  "bankName": "string",
+  "accountNumber": "string",
+  "balance": "number",
+  "ifscCode": "string"
+}

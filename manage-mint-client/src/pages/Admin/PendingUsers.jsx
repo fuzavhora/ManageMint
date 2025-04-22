@@ -29,7 +29,7 @@ const PendingUsers = () => {
 
   const handleApprove = async (userId) => {
     try {
-      await fetchUser(`admin/verify-user/${userId}`, {}, 'PUT');
+      await fetchUser(`admin/verify-user/${userId}`, {}, 'post');
       toast.success('User approved successfully');
       fetchPendingUsers();
     } catch (error) {
@@ -43,7 +43,7 @@ const PendingUsers = () => {
         toast.error('Please provide a reason for rejection');
         return;
       }
-      await fetchUser(`admin/reject-user/${userId}`, { reason: rejectReason }, 'DELETE');
+      await fetchUser(`admin/reject-user/${userId}`, { reason: rejectReason }, 'post');
       toast.success('User rejected successfully');
       setSelectedUser(null);
       setRejectReason('');

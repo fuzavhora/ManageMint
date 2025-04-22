@@ -1,6 +1,8 @@
 // src/context/AuthContext.jsx
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 import instance from "../api/axios";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const AuthContext = createContext();
 
@@ -9,22 +11,31 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchUser = async (url, data) => {
-    // setLoading(true);
-    // try {
-    //   const response = await instance.post(url, data);
-    //   setUser(response.data.user);
-    //   setError(null);
-    //   return response;
-    // } catch (err) {
-    //   console.error("Fetch user error:", err);
-    //   setUser(null);
-    //   setError(err?.response?.data?.message || "Something went wrong");
-    // } finally {
-    //   setLoading(false);
-    // }
-    const response = await instance.post(url,data)
-    return response
+
+
+  const fetchUser = async (url, data, method = 'POST') => {
+    try {
+      const token = localStorage.getItem("token");
+      
+      const response = await axios({
+        method: method,
+        url: `http://localhost:5500/api/${url}`,
+        data: method !== 'GET' ? data : data,
+        params: method === 'GET' ? data : undefined,
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`
+        },
+      });
+      
+      return response;
+    } catch (error) {
+      setError(error?.response?.data?.message || "Something went wrong");
+      throw error;
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -33,8 +44,8 @@ export const AuthProvider = ({ children }) => {
         user,
         setUser,
         loading,
-        setLoading,
         error,
+        setLoading,
         setError,
         fetchUser,
       }}

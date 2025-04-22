@@ -17,9 +17,7 @@ exports.verifyToken = (req, res, next) => {
 };
 
 exports.isAdmin = (req, res, next) => {
-  const authHeader = req.headers.authorization;
-  // const token = authHeader && authHeader.startsWith('Bearer ')
-  const token = authHeader || req.cookies?.token;
+  const token = req.cookies.token;
 
   if (!token) {
     return res.status(401).json({ message: "No token, authorization denied" });
