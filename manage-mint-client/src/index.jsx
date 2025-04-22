@@ -4,14 +4,12 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { AuthProvider } from "./context/AuthContext";
-import AddMobileTrans from "./components/Modals/AddMobileTrans";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <AuthProvider>
-    {/* <App /> */}
-    <AddMobileTrans />
+    <App />
   </AuthProvider>
 );
 

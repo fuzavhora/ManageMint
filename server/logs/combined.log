@@ -2786,3 +2786,141 @@
 {"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:19:08"}
 {"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:20:50"}
 {"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:21:23"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:26:16"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:27:38"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:27:40"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:28:09"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:28:17"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:28:36"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:28:38"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:28:39"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:29:33"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:29:42"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:31:20"}
+{"level":"info","message":"Server running on port 5500","service":"manage-mint-api","timestamp":"2025-04-22 17:33:49"}
+{"level":"info","message":"CORS enabled for origins: http://localhost:3000","service":"manage-mint-api","timestamp":"2025-04-22 17:33:49"}
+{"level":"info","message":"GET /api/api/auth/profile","service":"manage-mint-api","timestamp":"2025-04-22 17:33:50"}
+{"level":"info","message":"Mongoose connected to DB","service":"manage-mint-api","timestamp":"2025-04-22 17:33:50"}
+{"level":"info","message":"MongoDB Connected: ac-bl8jng4-shard-00-00.pyerd0y.mongodb.net","service":"manage-mint-api","timestamp":"2025-04-22 17:33:50"}
+{"level":"info","message":"POST /api/auth/login","service":"manage-mint-api","timestamp":"2025-04-22 17:33:56"}
+{"level":"info","message":"POST /api/user/accounts/undefined","service":"manage-mint-api","timestamp":"2025-04-22 17:33:56"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:33:56"}
+{"level":"info","message":"POST /api/user/transactions/recent","service":"manage-mint-api","timestamp":"2025-04-22 17:33:56"}
+{"level":"info","message":"POST /api/user/accounts/undefined","service":"manage-mint-api","timestamp":"2025-04-22 17:34:04"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:34:04"}
+{"level":"info","message":"POST /api/user/transactions/recent","service":"manage-mint-api","timestamp":"2025-04-22 17:34:04"}
+{"level":"info","message":"Server running on port 5500","service":"manage-mint-api","timestamp":"2025-04-22 17:34:47"}
+{"level":"info","message":"CORS enabled for origins: http://localhost:3000","service":"manage-mint-api","timestamp":"2025-04-22 17:34:47"}
+{"level":"info","message":"Mongoose connected to DB","service":"manage-mint-api","timestamp":"2025-04-22 17:34:48"}
+{"level":"info","message":"MongoDB Connected: ac-bl8jng4-shard-00-00.pyerd0y.mongodb.net","service":"manage-mint-api","timestamp":"2025-04-22 17:34:48"}
+{"level":"info","message":"POST /api/user/accounts/undefined","service":"manage-mint-api","timestamp":"2025-04-22 17:34:50"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:34:50"}
+{"level":"info","message":"POST /api/user/transactions/recent","service":"manage-mint-api","timestamp":"2025-04-22 17:34:50"}
+{"level":"info","message":"POST /api/user/accounts/undefined","service":"manage-mint-api","timestamp":"2025-04-22 17:34:55"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:34:55"}
+{"level":"info","message":"POST /api/user/transactions/recent","service":"manage-mint-api","timestamp":"2025-04-22 17:34:55"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:35:01"}
+{"level":"info","message":"GET /api/api/auth/profile","service":"manage-mint-api","timestamp":"2025-04-22 17:35:48"}
+{"level":"info","message":"POST /api/auth/login","service":"manage-mint-api","timestamp":"2025-04-22 17:35:56"}
+{"level":"info","message":"POST /api/user/accounts/undefined","service":"manage-mint-api","timestamp":"2025-04-22 17:35:56"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:35:56"}
+{"level":"info","message":"POST /api/user/transactions/recent","service":"manage-mint-api","timestamp":"2025-04-22 17:35:56"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:36:00"}
+{"level":"info","message":"POST /api/auth/login","service":"manage-mint-api","timestamp":"2025-04-22 17:42:44"}
+{"level":"info","message":"POST /api/user/accounts/undefined","service":"manage-mint-api","timestamp":"2025-04-22 17:42:44"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:42:44"}
+{"level":"info","message":"POST /api/user/transactions/recent","service":"manage-mint-api","timestamp":"2025-04-22 17:42:44"}
+{"level":"info","message":"POST /api/user/accounts/undefined","service":"manage-mint-api","timestamp":"2025-04-22 17:43:04"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:43:04"}
+{"level":"info","message":"POST /api/user/transactions/recent","service":"manage-mint-api","timestamp":"2025-04-22 17:43:04"}
+{"level":"info","message":"POST /api/user/accounts/undefined","service":"manage-mint-api","timestamp":"2025-04-22 17:53:24"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:53:24"}
+{"level":"info","message":"POST /api/user/transactions/recent","service":"manage-mint-api","timestamp":"2025-04-22 17:53:24"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:53:39"}
+{"level":"info","message":"POST /api/user/accounts/undefined","service":"manage-mint-api","timestamp":"2025-04-22 17:55:26"}
+{"level":"info","message":"POST /api/user/transactions/recent","service":"manage-mint-api","timestamp":"2025-04-22 17:55:26"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:55:26"}
+{"level":"info","message":"POST /api/user/accounts/undefined","service":"manage-mint-api","timestamp":"2025-04-22 17:55:31"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:55:31"}
+{"level":"info","message":"POST /api/user/transactions/recent","service":"manage-mint-api","timestamp":"2025-04-22 17:55:31"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:56:00"}
+{"level":"info","message":"POST /api/user/transactions","service":"manage-mint-api","timestamp":"2025-04-22 17:56:34"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 17:56:34"}
+{"level":"info","message":"POST /api/user/transactions","service":"manage-mint-api","timestamp":"2025-04-22 17:56:54"}
+{"level":"info","message":"POST /api/user/transactions","service":"manage-mint-api","timestamp":"2025-04-22 17:56:55"}
+{"level":"info","message":"POST /api/user/transactions","service":"manage-mint-api","timestamp":"2025-04-22 17:56:55"}
+{"level":"info","message":"POST /api/user/transactions","service":"manage-mint-api","timestamp":"2025-04-22 17:56:56"}
+{"level":"info","message":"POST /api/user/transactions","service":"manage-mint-api","timestamp":"2025-04-22 17:56:56"}
+{"level":"info","message":"POST /api/user/transactions","service":"manage-mint-api","timestamp":"2025-04-22 17:56:56"}
+{"level":"info","message":"Server running on port 5500","service":"manage-mint-api","timestamp":"2025-04-22 17:59:34"}
+{"level":"info","message":"CORS enabled for origins: http://localhost:3000","service":"manage-mint-api","timestamp":"2025-04-22 17:59:34"}
+{"level":"info","message":"Mongoose connected to DB","service":"manage-mint-api","timestamp":"2025-04-22 17:59:36"}
+{"level":"info","message":"MongoDB Connected: ac-bl8jng4-shard-00-02.pyerd0y.mongodb.net","service":"manage-mint-api","timestamp":"2025-04-22 17:59:36"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 18:00:07"}
+{"level":"info","message":"POST /api/user/accounts/undefined","service":"manage-mint-api","timestamp":"2025-04-22 18:00:10"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 18:00:10"}
+{"level":"info","message":"POST /api/user/transactions/recent","service":"manage-mint-api","timestamp":"2025-04-22 18:00:10"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 18:00:18"}
+{"level":"info","message":"POST /api/user/mobile/add-mobile-transactions","service":"manage-mint-api","timestamp":"2025-04-22 18:00:34"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 18:00:34"}
+{"level":"info","message":"POST /api/user/mobile/add-mobile-transactions","service":"manage-mint-api","timestamp":"2025-04-22 18:00:40"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 18:03:18"}
+{"level":"info","message":"POST /api/user/accounts/undefined","service":"manage-mint-api","timestamp":"2025-04-22 18:03:21"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 18:03:21"}
+{"level":"info","message":"POST /api/user/transactions/recent","service":"manage-mint-api","timestamp":"2025-04-22 18:03:21"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 18:03:25"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 18:03:31"}
+{"level":"info","message":"POST /api/user/mobile/add-mobile-transactions","service":"manage-mint-api","timestamp":"2025-04-22 18:03:52"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 18:03:52"}
+{"level":"info","message":"Server running on port 5500","service":"manage-mint-api","timestamp":"2025-04-22 18:11:12"}
+{"level":"info","message":"CORS enabled for origins: http://localhost:3000","service":"manage-mint-api","timestamp":"2025-04-22 18:11:12"}
+{"level":"info","message":"Mongoose connected to DB","service":"manage-mint-api","timestamp":"2025-04-22 18:11:14"}
+{"level":"info","message":"MongoDB Connected: ac-bl8jng4-shard-00-02.pyerd0y.mongodb.net","service":"manage-mint-api","timestamp":"2025-04-22 18:11:14"}
+{"level":"info","message":"Server running on port 5500","service":"manage-mint-api","timestamp":"2025-04-22 18:11:25"}
+{"level":"info","message":"CORS enabled for origins: http://localhost:3000","service":"manage-mint-api","timestamp":"2025-04-22 18:11:25"}
+{"level":"info","message":"Mongoose connected to DB","service":"manage-mint-api","timestamp":"2025-04-22 18:11:26"}
+{"level":"info","message":"MongoDB Connected: ac-bl8jng4-shard-00-00.pyerd0y.mongodb.net","service":"manage-mint-api","timestamp":"2025-04-22 18:11:26"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 18:12:22"}
+{"level":"info","message":"POST /api/user/accounts/undefined","service":"manage-mint-api","timestamp":"2025-04-22 18:12:24"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 18:12:24"}
+{"level":"info","message":"POST /api/user/transactions/recent","service":"manage-mint-api","timestamp":"2025-04-22 18:12:24"}
+{"level":"info","message":"POST /api/user/accounts/undefined","service":"manage-mint-api","timestamp":"2025-04-22 18:12:26"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 18:12:26"}
+{"level":"info","message":"POST /api/user/transactions/recent","service":"manage-mint-api","timestamp":"2025-04-22 18:12:26"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 18:12:40"}
+{"level":"info","message":"POST /api/user/mobile/add-mobile-transactions","service":"manage-mint-api","timestamp":"2025-04-22 18:12:55"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 18:12:55"}
+{"level":"info","message":"POST /api/user/accounts/undefined","service":"manage-mint-api","timestamp":"2025-04-22 18:15:55"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 18:15:55"}
+{"level":"info","message":"POST /api/user/transactions/recent","service":"manage-mint-api","timestamp":"2025-04-22 18:15:55"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 18:15:58"}
+{"level":"info","message":"POST /api/user/mobile/add-mobile-transactions","service":"manage-mint-api","timestamp":"2025-04-22 18:16:13"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 18:16:13"}
+{"level":"info","message":"Server running on port 5500","service":"manage-mint-api","timestamp":"2025-04-22 18:16:25"}
+{"level":"info","message":"CORS enabled for origins: http://localhost:3000","service":"manage-mint-api","timestamp":"2025-04-22 18:16:25"}
+{"level":"info","message":"Mongoose connected to DB","service":"manage-mint-api","timestamp":"2025-04-22 18:16:26"}
+{"level":"info","message":"MongoDB Connected: ac-bl8jng4-shard-00-00.pyerd0y.mongodb.net","service":"manage-mint-api","timestamp":"2025-04-22 18:16:26"}
+{"level":"info","message":"POST /api/user/accounts/undefined","service":"manage-mint-api","timestamp":"2025-04-22 18:16:30"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 18:16:30"}
+{"level":"info","message":"POST /api/user/transactions/recent","service":"manage-mint-api","timestamp":"2025-04-22 18:16:30"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 18:16:32"}
+{"level":"info","message":"POST /api/user/mobile/add-mobile-transactions","service":"manage-mint-api","timestamp":"2025-04-22 18:16:46"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 18:16:46"}
+{"level":"info","message":"POST /api/user/mobile/add-mobile-transactions","service":"manage-mint-api","timestamp":"2025-04-22 18:16:50"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 18:18:23"}
+{"level":"info","message":"POST /api/user/accounts/undefined","service":"manage-mint-api","timestamp":"2025-04-22 18:18:24"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 18:18:24"}
+{"level":"info","message":"POST /api/user/transactions/recent","service":"manage-mint-api","timestamp":"2025-04-22 18:18:24"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 18:18:26"}
+{"level":"info","message":"POST /api/user/mobile/add-mobile-transactions","service":"manage-mint-api","timestamp":"2025-04-22 18:18:39"}
+{"level":"info","message":"POST /api/user/credit-cards","service":"manage-mint-api","timestamp":"2025-04-22 18:18:39"}
+{"level":"info","message":"POST /api/user/mobile/add-mobile-transactions","service":"manage-mint-api","timestamp":"2025-04-22 18:18:54"}
+{"level":"info","message":"Server running on port 5500","service":"manage-mint-api","timestamp":"2025-04-22 18:19:37"}
+{"level":"info","message":"CORS enabled for origins: http://localhost:3000","service":"manage-mint-api","timestamp":"2025-04-22 18:19:37"}
+{"level":"info","message":"Mongoose connected to DB","service":"manage-mint-api","timestamp":"2025-04-22 18:19:38"}
+{"level":"info","message":"MongoDB Connected: ac-bl8jng4-shard-00-01.pyerd0y.mongodb.net","service":"manage-mint-api","timestamp":"2025-04-22 18:19:38"}
+{"level":"info","message":"POST /api/user/mobile/add-mobile-transactions","service":"manage-mint-api","timestamp":"2025-04-22 18:19:39"}
+{"level":"info","message":"Server running on port 5500","service":"manage-mint-api","timestamp":"2025-04-22 18:23:48"}
+{"level":"info","message":"CORS enabled for origins: http://localhost:3000","service":"manage-mint-api","timestamp":"2025-04-22 18:23:48"}
+{"level":"info","message":"Mongoose connected to DB","service":"manage-mint-api","timestamp":"2025-04-22 18:23:49"}
+{"level":"info","message":"MongoDB Connected: ac-bl8jng4-shard-00-01.pyerd0y.mongodb.net","service":"manage-mint-api","timestamp":"2025-04-22 18:23:49"}

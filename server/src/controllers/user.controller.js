@@ -229,7 +229,7 @@ exports.addCreditCard = async (req, res) => {
 };
 exports.getallcards = async (req, res) => {
   try {
-    const userId = "68047b039b1ac0dbb21fd163";
+    const userId = req.user.id;
     const cards = await CreditCard.find({ user: userId });
 
     if (!cards || cards.length === 0) {
@@ -394,8 +394,10 @@ exports.getMonthlyStats = async (req, res) => {
 exports.addMobileTransaction = async (req, res) => {
   try {
     const userId = req.user._id;
-    const { name, platform, price, cashback } = req.body;
-    // Basic validation
+    console.log(req.body);
+    
+    const { name, platform, price, cashback = 0, cardId } = req.body;
+
     if (!name || !platform || !price) {
       return res.status(400).json({ message: "Missing required fields" });
     }
@@ -404,35 +406,41 @@ exports.addMobileTransaction = async (req, res) => {
       user: userId,
       name,
       platform,
-      price,
-      paymentMode,
-      cashback: cashback || 0,
+      price: Number(price),
+      cashback: Number(cashback),
+      cardId,
     };
 
     const userAccount = await UserAccount.findOne({ user: userId });
     if (!userAccount) {
       return res.status(404).json({ message: "User account not found" });
     }
-    userAccount.totalMobileValue += price;
-    userAccount.totalCashback += cashback;
-    userAccount.creditCardOutstanding += price;
+
+    userAccount.totalMobileValue += Number(price);
+    userAccount.totalCashback += Number(cashback);
+    userAccount.creditCardOutstanding += Number(price);
     await userAccount.save();
 
-    const creditCard = await CreditCard.findOne({ user: userId , cardNumber : paymentMode });
+    const creditCard = await CreditCard.findById(cardId);
     if (!creditCard) {
       return res.status(404).json({ message: "Credit card not found" });
     }
-    creditCard.outstandingAmount += price;
+
+    creditCard.outstandingAmount += Number(price);
     await creditCard.save();
+
     const newTransaction = await Mobile.create(transactionData);
+
     res.status(201).json({
-      message: "Transaction added successfully",
+      message: "Mobile transaction added successfully",
       transaction: newTransaction,
     });
   } catch (error) {
+    console.error("Add Mobile Transaction Error:", error);
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
+
 
 exports.getMobileTransactions = async (req, res) => {
   try {
