@@ -2,6 +2,44 @@
 
 ## Authentication
 
+## APP MAIN ROUTES
+ --user routes
+ --admin Routes
+ --Auth Routes
+
+
+ ## Admin Routes
+ -  **Admin Login**: `api/admin/login`
+   - **Method**: `POST`
+ -  **Admin Get Users**: `api/admin/get-users`
+   - **Method**: `GET`
+ -  **Admin Pending Users**: `api/admin/pending-users`
+   - **Method**: `GET`
+-  **Admin Approve User**: `api/admin/verify-user/:userId`
+   - **Method**: `PUT`
+-  **Admin Reject User**: `api/admin/reject-user/:userId`
+   - **Method**: `PUT`
+-  **Admin Rejected User**: `api/admin/rejected-users`
+   - **Method**: `GET`
+- **Admin Logout**: `api/admin/logout`
+   - **Method**: `POST`
+
+## Auth Routes
+
+
+## User Routes
+- **User Register**: `api/user/register`
+   - **Method**: `POST`
+- **User verify-otp**: `api/user/verify-otp`
+   - **Method**: `POST`
+- **User get Accounts**: `api/user/accounts/:id`
+   - **Method**: `GET`
+- **User Add BankAccounts**: `api/user/bank-accounts`
+   - **Method**: `POST`
+- **User 
+
+
+
 ### Register User
 - **URL**: `/api/auth/register`
 - **Method**: `POST`

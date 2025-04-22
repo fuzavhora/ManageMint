@@ -25,7 +25,7 @@ userSchema.post('save', async function (doc, next) {
             totalCashInHand: 0,
             goldValue: 0,
             totalMobileValue: 0,
-            paytmCashback: 0,
+            totalCashback: 0,
             expenses: 0,
             totalIncome: 0,
             totalSaving: 0
