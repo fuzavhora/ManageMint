@@ -1,13 +1,24 @@
+// src/api/axios.js
 import axios from 'axios';
-
-const token = localStorage.getItem('token');
 
 const instance = axios.create({
   baseURL: 'http://localhost:5500/api',
-  'authorization': `${token}`,
+  withCredentials: true,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
-// Add response interceptor for error handling
-
+// Attach token dynamically using request interceptor
+instance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
 export default instance;

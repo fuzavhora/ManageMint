@@ -393,10 +393,13 @@ exports.getMonthlyStats = async (req, res) => {
 
 exports.addMobileTransaction = async (req, res) => {
   try {
-    const userId = req.user._id;
-    console.log(req.body);
+    const userId = req.user.id;
+
+    
+    
     
     const { name, platform, price, cashback = 0, cardId } = req.body;
+
 
     if (!name || !platform || !price) {
       return res.status(400).json({ message: "Missing required fields" });

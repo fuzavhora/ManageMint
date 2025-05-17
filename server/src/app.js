@@ -16,7 +16,7 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // CORS configuration
-app.use(cors());
+
 
 app.use(express.json());
 app.use(cookieParser());

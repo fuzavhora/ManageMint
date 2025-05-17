@@ -27,7 +27,7 @@ exports.loginUser = async (req, res) => {
         // if (!user.isVerified) return res.status(401).json({ message: "User not verified or may be blocked" });
 
         const token = generateToken(user._id, user.role || "user",  {
-          expiresIn: "1m", // or "10m", "7d"
+          expiresIn: "1d", // or "10m", "7d"
         });
 
         res.cookie("token", token, {

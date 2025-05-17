@@ -76,7 +76,7 @@ exports.globalErrorHandler = (err, req, res, next) => {
     if (error.name === 'JsonWebTokenError') error = handleJWTError();
     if (error.name === 'TokenExpiredError') error = handleJWTExpiredError();
 
-    sendErrorProd(error, res);
+    sendErrovrProd(error, res);
   }
 };
 

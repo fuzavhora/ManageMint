@@ -26,6 +26,7 @@ import PendingUsers from "./pages/Admin/PendingUsers";
 import ApprovedUsers from "./pages/Admin/ApprovedUsers";
 import RejectedUsers from "./pages/Admin/RejectedUsers";
 import AdminProtectedRoute from "./components/AdminProtectedRoute";
+import NewDashboard from "./pages/Dashboard/NewDashboard";
 
 function App() {
   return (
@@ -41,7 +42,7 @@ function App() {
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/dashboard" element={
             <ProtectedRoute>
-              <Dashboard />
+              <NewDashboard />
               
             </ProtectedRoute>
           } />

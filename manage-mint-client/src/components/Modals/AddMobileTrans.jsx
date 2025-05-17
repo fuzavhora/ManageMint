@@ -40,18 +40,13 @@ const AddMobileTrans = ({ isOpen, onClose, onSuccess }) => {
         platform: data.platform,
         price: parseFloat(data.price),
         cashback: parseFloat(data.cashback) || 0,
-        paymentMode: data.cardId, // cardId is passed here correctly now
+        cardId: data.cardId, // ✅ corrected key
       };
+      
 
       const response = await fetchUser(
         "user/mobile/add-mobile-transactions",
-        {
-          method: "POST",
-          body: JSON.stringify(transactionData),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+      transactionData
       );
 
       if (response?.status === 201 || response?.status === 200) {

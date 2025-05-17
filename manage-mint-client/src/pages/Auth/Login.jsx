@@ -65,7 +65,7 @@ const Login = () => {
         setTimeout(() => {
           localStorage.removeItem("token");
           toast.info("Session expired. Please login again.");
-        },200000);
+        },20000);
       }
     } catch (error) {
       const errorMessage = error.response?.data?.message || "Invalid Email or Password or User is not verified";

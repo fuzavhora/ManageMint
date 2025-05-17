@@ -38,9 +38,9 @@ exports.isAdmin = (req, res, next) => {
 };
 
 exports.isUser = (req, res, next) => {
-  const token = req.cookies.token || req.headers.authorization;
+  const token = req.cookies.token ;
  
-
+  
   if (!token) {
     return res.status(401).json({ message: "No token, authorization denied" });
   }
@@ -50,8 +50,9 @@ exports.isUser = (req, res, next) => {
     if (decoded.role !== "user") {
       return res.status(403).json({ message: "Access denied: Users only" });
     }
-
+    
     req.user = decoded;
+
 
     next();
   } catch (error) {
