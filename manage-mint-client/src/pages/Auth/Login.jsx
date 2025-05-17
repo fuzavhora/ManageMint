@@ -56,16 +56,20 @@ const Login = () => {
       const response = await fetchUser("auth/login", { ...formData });
 
       if (response.status === 200) {
-        setUser(response.data);
+        console.log("user : ", response.data.user);
+        
+        setUser(response.data.user);
         const token = response.data.token;
         localStorage.setItem("token", token);
+        
         toast.success("Login successful!");
         navigate("/dashboard");
 
         setTimeout(() => {
           localStorage.removeItem("token");
           toast.info("Session expired. Please login again.");
-        },20000);
+          
+        },50000);
       }
     } catch (error) {
       const errorMessage = error.response?.data?.message || "Invalid Email or Password or User is not verified";

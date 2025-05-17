@@ -37,28 +37,47 @@ exports.isAdmin = (req, res, next) => {
   }
 };
 
+
 exports.isUser = (req, res, next) => {
-  const token = req.cookies.token ;
- 
+  // 1. Get token from cookies or Authorization header
+  const tokenFromCookie = req.cookies?.token;
+  console.log("token cokkie", tokenFromCookie);
   
+  const tokenFromHeader = req.headers?.authorization?.startsWith("Bearer ")
+    ? req.headers.authorization.split(" ")[1]
+    : null;
+
+  const token = tokenFromCookie || tokenFromHeader;
+
+  console.log("token :", token);
+  
+
+  // 2. Token not found
   if (!token) {
-    return res.status(401).json({ message: "No token, authorization denied" });
+    return res.status(401).json({ message: "Unauthorized: No token provided" });
   }
 
   try {
+    // 3. Verify token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    if (decoded.role !== "user") {
-      return res.status(403).json({ message: "Access denied: Users only" });
-    }
-    
-    req.user = decoded;
 
+    // 4. Check if role is strictly 'user'
+    if (!decoded || decoded.role !== "user") {
+      return res.status(403).json({ message: "Forbidden: Users only" });
+    }
+
+    // 5. Attach user to request
+    req.user = decoded;
 
     next();
   } catch (error) {
+    // 6. Handle token errors
     if (error.name === "TokenExpiredError") {
-      return res.status(401).json({ message: "Token expired" });
+      return res.status(401).json({ message: "Unauthorized: Token expired" });
+    } else if (error.name === "JsonWebTokenError") {
+      return res.status(401).json({ message: "Unauthorized: Invalid token" });
+    } else {
+      return res.status(500).json({ message: "Internal Server Error" });
     }
-    return res.status(401).json({ message: "Invalid token" });
   }
 };

@@ -1,7 +1,7 @@
 // src/context/AuthContext.jsx
 import { createContext, useState, useContext, useEffect } from "react";
 import instance from "../api/axios";
-import axios from "axios";
+
 import { toast } from "react-toastify";
 
 const AuthContext = createContext();
@@ -50,6 +50,18 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const getUserAccount = async (userId) => {
+    try {
+      const res = await instance.post(`/user/accounts/${userId}`);
+      return res.data.userAccount;
+    } catch (error) {
+      toast.error(
+        error?.response?.data?.message || "Unable to fetch account details"
+      );
+      return null;
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -60,7 +72,8 @@ export const AuthProvider = ({ children }) => {
         setLoading,
         setError,
         fetchUser,
-        logout
+        logout,
+        getUserAccount
       }}
     >
       {children}
